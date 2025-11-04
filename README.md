@@ -1,13 +1,5 @@
-<style>
-img {
-  width: 600px;        /* 统一宽度，可按需要改 */
-  max-width: 90%;      /* 在小屏上自动缩小，防止溢出 */
-  display: block;
-  margin: 16px auto;   /* auto 左右 = 居中 */
-}
-</style>
-
 # 会飞的墙
+
 ![1](_media/1.png)
 ![2](_media/2.png)
 ![3](_media/3.png)
