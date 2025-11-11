@@ -5,6 +5,7 @@ from tracemalloc import start
 # --- configuration ---
 
 readme_file = "README.md"
+base_media_dir = '_media'
 
 # --- end configuration ---
 
@@ -13,7 +14,11 @@ def natural_sort_key(s):
     # e.g., '2.png' comes before '10.png'.
     return [int(text) if text.isdigit() else text.lower() for text in re.split('([0-9]+)', s)]
 
-def update_readme(png_dir, chapter_mark, start_marker, end_marker):
+def update_readme(base, chapter_mark, start_marker, end_marker):
+    
+    png_dir = os.path.join(base_media_dir, base)
+    png_dir = os.path.join(png_dir, 'png')
+    
     # check if the png directory exists.
     if not os.path.isdir(png_dir):
         print(f"Error: Directory not found at '{png_dir}'")
@@ -39,9 +44,9 @@ def update_readme(png_dir, chapter_mark, start_marker, end_marker):
             # generate block
             block = (
                 '<picture>\n'
-                f'  <source srcset="_media/avif/{base_name}.avif" type="image/avif">\n'
-                f'  <source srcset="_media/webp/{base_name}.webp" type="image/webp">\n'
-                f'  <img src="_media/png/{base_name}.png" alt="{base_name}">\n'
+                f'  <source srcset="_media/{base}/avif/{base_name}.avif" type="image/avif">\n'
+                f'  <source srcset="_media/{base}/webp/{base_name}.webp" type="image/webp">\n'
+                f'  <img src="_media/{base}/png/{base_name}.png" alt="{base_name}">\n'
                 '</picture>\n'
             )
             # set title
@@ -91,7 +96,7 @@ if __name__ == "__main__":
 
     # main
     update_readme(
-        png_dir="_media/png",
+        base="main",
         chapter_mark={  # TODO add descriptive titles 
             "1": "1",
             "2": "2",
@@ -122,4 +127,12 @@ if __name__ == "__main__":
     )
     
     # dlc
-    # TODO
+    update_readme(
+        base="dlc",
+        chapter_mark={  # TODO add descriptive titles 
+            "1": "1",
+            "2": "2",
+        },
+        start_marker="<!-- START DLC GENERATE -->",
+        end_marker="<!-- END DLC GENERATE -->",
+    )

@@ -42,8 +42,14 @@ def create_dir_if_not_exists(directory):
         print(f"Creating directory: {directory}")
         os.makedirs(directory)
 
-def compress_images(png_dir, avif_dir, webp_dir):
+def compress_images(media_subdir):
     # iterates through the png directory and runs compression.
+    
+    media_dir = os.path.join(base_media_dir, media_subdir)
+    # input and output directories
+    png_dir = os.path.join(media_dir, "png")
+    avif_dir = os.path.join(media_dir, "avif")
+    webp_dir = os.path.join(media_dir, "webp")
     
     # ensure output directories exist
     create_dir_if_not_exists(avif_dir)
@@ -103,8 +109,6 @@ def compress_images(png_dir, avif_dir, webp_dir):
 
 if __name__ == "__main__":
 
-    compress_images(
-        png_dir=os.path.join(base_media_dir, "png"),
-        avif_dir=os.path.join(base_media_dir, "avif"),
-        webp_dir=os.path.join(base_media_dir, "webp"),
-    )
+    # iterate subdirs
+    for subdir in ["main", "dlc"]:
+        compress_images(subdir)
