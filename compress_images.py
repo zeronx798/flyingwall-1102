@@ -3,11 +3,9 @@ import subprocess
 
 # --- configuration ---
 
-# input and output directories
+# input and output base directories
 # assumes script runs from the project root
-png_dir = "_media/png"
-avif_dir = "_media/avif"
-webp_dir = "_media/webp"
+base_media_dir = '_media'
 
 # ffmpeg parameters (optimized for text and solid colors)
 
@@ -38,14 +36,13 @@ webp_params = [
 
 # --- end configuration ---
 
-
 def create_dir_if_not_exists(directory):
     # creates a directory if it doesn't exist.
     if not os.path.exists(directory):
         print(f"Creating directory: {directory}")
         os.makedirs(directory)
 
-def compress_images():
+def compress_images(png_dir, avif_dir, webp_dir):
     # iterates through the png directory and runs compression.
     
     # ensure output directories exist
@@ -63,8 +60,16 @@ def compress_images():
             base_name = os.path.splitext(filename)[0]
             input_path = os.path.join(png_dir, filename)
             
-            # --- convert to avif ---
+            # merge path
             avif_path = os.path.join(avif_dir, f"{base_name}.avif")
+            webp_path = os.path.join(webp_dir, f"{base_name}.webp")
+            
+            # skip if both file exists
+            if os.path.isfile(avif_path) and os.path.isfile(webp_path):
+                print(f"Info: '{filename}' is converted, skipping.")
+                continue
+            
+            # --- convert to avif ---
             print(f"Converting {filename} to AVIF...")
             
             avif_command = ["ffmpeg", "-i", input_path] + avif_params + [avif_path]
@@ -80,7 +85,6 @@ def compress_images():
                 return
 
             # --- convert to webp ---
-            webp_path = os.path.join(webp_dir, f"{base_name}.webp")
             print(f"Converting {filename} to WebP...")
 
             webp_command = ["ffmpeg", "-i", input_path] + webp_params + [webp_path]
@@ -98,4 +102,9 @@ def compress_images():
     print("\nAll images processed!")
 
 if __name__ == "__main__":
-    compress_images()
+
+    compress_images(
+        png_dir=os.path.join(base_media_dir, "png"),
+        avif_dir=os.path.join(base_media_dir, "avif"),
+        webp_dir=os.path.join(base_media_dir, "webp"),
+    )

@@ -1,40 +1,10 @@
 import os
 import re
+from tracemalloc import start
 
 # --- configuration ---
 
 readme_file = "README.md"
-png_dir = "_media/png"
-
-start_marker = "<!-- START MAIN GENERATE -->"
-end_marker = "<!-- END MAIN GENERATE -->"
-
-# TODO add descriptive titles 
-chapter_mark = {
-    "1": "1",
-    "2": "2",
-    "3": "3",
-    "4": "4",
-    "5": "5",
-    "6": "6",
-    "7": "7",
-    "8": "8",
-    "9": "9",
-    "10": "10",
-    "11": "11",
-    "12": "12",
-    "13": "13",
-    "14": "14",
-    "15": "15",
-    "16": "16",
-    "17": "17",
-    "18": "18",
-    "19": "19",
-    "20": "20",
-    "21": "21",
-    "22": "22",
-    "23": "23",
-}
 
 # --- end configuration ---
 
@@ -43,7 +13,7 @@ def natural_sort_key(s):
     # e.g., '2.png' comes before '10.png'.
     return [int(text) if text.isdigit() else text.lower() for text in re.split('([0-9]+)', s)]
 
-def update_readme():
+def update_readme(png_dir, chapter_mark, start_marker, end_marker):
     # check if the png directory exists.
     if not os.path.isdir(png_dir):
         print(f"Error: Directory not found at '{png_dir}'")
@@ -118,4 +88,38 @@ def update_readme():
 
 
 if __name__ == "__main__":
-    update_readme()
+
+    # main
+    update_readme(
+        png_dir="_media/png",
+        chapter_mark={  # TODO add descriptive titles 
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "11": "11",
+            "12": "12",
+            "13": "13",
+            "14": "14",
+            "15": "15",
+            "16": "16",
+            "17": "17",
+            "18": "18",
+            "19": "19",
+            "20": "20",
+            "21": "21",
+            "22": "22",
+            "23": "23",
+        },
+        start_marker="<!-- START MAIN GENERATE -->",
+        end_marker="<!-- END MAIN GENERATE -->",
+    )
+    
+    # dlc
+    # TODO
