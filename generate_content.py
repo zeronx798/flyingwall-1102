@@ -6,8 +6,35 @@ import re
 readme_file = "README.md"
 png_dir = "_media/png"
 
-start_marker = "<!-- START GENERATE -->"
-end_marker = "<!-- END GENERATE -->"
+start_marker = "<!-- START MAIN GENERATE -->"
+end_marker = "<!-- END MAIN GENERATE -->"
+
+# TODO add descriptive titles 
+chapter_mark = {
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4",
+    "5": "5",
+    "6": "6",
+    "7": "7",
+    "8": "8",
+    "9": "9",
+    "10": "10",
+    "11": "11",
+    "12": "12",
+    "13": "13",
+    "14": "14",
+    "15": "15",
+    "16": "16",
+    "17": "17",
+    "18": "18",
+    "19": "19",
+    "20": "20",
+    "21": "21",
+    "22": "22",
+    "23": "23",
+}
 
 # --- end configuration ---
 
@@ -39,13 +66,19 @@ def update_readme():
         picture_blocks = []
         for filename in png_files:
             base_name = os.path.splitext(filename)[0]
+            # generate block
             block = (
                 '<picture>\n'
                 f'  <source srcset="_media/avif/{base_name}.avif" type="image/avif">\n'
                 f'  <source srcset="_media/webp/{base_name}.webp" type="image/webp">\n'
                 f'  <img src="_media/png/{base_name}.png" alt="{base_name}">\n'
-                '</picture>'
+                '</picture>\n'
             )
+            # set title
+            if base_name in chapter_mark:
+                block = (
+                    f"### {chapter_mark[base_name]}\n"
+                ) + block
             picture_blocks.append(block)
         
         # join all blocks with a newline in between.
