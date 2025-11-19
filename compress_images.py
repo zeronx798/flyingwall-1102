@@ -31,7 +31,8 @@ webp_params = [
     "-c:v", "libwebp",
     "-lossless", "1",
     "-quality", "100",
-    "-preset", "text"
+    "-preset", "text",
+    "-vf", "scale=16383:16383:force_original_aspect_ratio=decrease" # hard limit of webp
 ]
 
 # --- end configuration ---

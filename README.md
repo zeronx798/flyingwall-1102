@@ -185,4 +185,52 @@
   <img src="_media/dlc/png/2.png" alt="2">
 </picture>
 
+<picture>
+  <source srcset="_media/dlc/avif/3.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/3.webp" type="image/webp">
+  <img src="_media/dlc/png/3.png" alt="3">
+</picture>
+
+<picture>
+  <source srcset="_media/dlc/avif/4.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/4.webp" type="image/webp">
+  <img src="_media/dlc/png/4.png" alt="4">
+</picture>
+
+<picture>
+  <source srcset="_media/dlc/avif/5.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/5.webp" type="image/webp">
+  <img src="_media/dlc/png/5.png" alt="5">
+</picture>
+
+<picture>
+  <source srcset="_media/dlc/avif/6.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/6.webp" type="image/webp">
+  <img src="_media/dlc/png/6.png" alt="6">
+</picture>
+
+<picture>
+  <source srcset="_media/dlc/avif/7.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/7.webp" type="image/webp">
+  <img src="_media/dlc/png/7.png" alt="7">
+</picture>
+
+<picture>
+  <source srcset="_media/dlc/avif/8.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/8.webp" type="image/webp">
+  <img src="_media/dlc/png/8.png" alt="8">
+</picture>
+
+<picture>
+  <source srcset="_media/dlc/avif/9.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/9.webp" type="image/webp">
+  <img src="_media/dlc/png/9.png" alt="9">
+</picture>
+
+<picture>
+  <source srcset="_media/dlc/avif/10.avif" type="image/avif">
+  <source srcset="_media/dlc/webp/10.webp" type="image/webp">
+  <img src="_media/dlc/png/10.png" alt="10">
+</picture>
+
 <!-- END DLC GENERATE -->
